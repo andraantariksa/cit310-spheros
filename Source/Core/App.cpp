@@ -62,9 +62,10 @@ void App::Run()
         if (rightClick)
         {
             sf::Vector2i mousePosition = sf::Mouse::getPosition(m_Window);
+            auto mousePositionGlm = glm::vec2((float)mousePosition.x, (float)mousePosition.y);
             std::optional<glm::vec3> normalClickedSurface = m_SystemRender.GetSphereSurfaceNormal(
                 m_Registry,
-                glm::vec2((float)mousePosition.x, (float)mousePosition.y)
+                mousePositionGlm
             );
             if (normalClickedSurface.has_value())
             {

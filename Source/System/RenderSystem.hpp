@@ -28,7 +28,7 @@ public:
 
 	void Render(entt::registry& registry, sf::RenderWindow& window);
 	sf::Vector2f TransformToSCSVec2SFML(const glm::vec4& v, const TransformComponent& transform);
-	glm::vec2 RenderSystem::TransformToSCSVec2GLM(const glm::vec4& v, const TransformComponent& transform);
+	glm::vec2 TransformToSCSVec2GLM(const glm::vec4& v, const TransformComponent& transform);
 	glm::vec4 TransformToVCSVec4(const glm::vec4& v, const TransformComponent& transform);
 	glm::vec4 TransformToWCSVec4(const glm::vec4& v, const TransformComponent& transform);
 	glm::vec4 TransformToSCS(const glm::vec4& v, const TransformComponent& transform);

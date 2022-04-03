@@ -416,12 +416,14 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 				const glm::vec3 v2 = TransformToVCSVec4(sphere.m_Vertices[i + 2], transform) - TransformToVCSVec4(sphere.m_Vertices[0], transform);
 				if (glm::dot(glm::cross(v1, v2), m_Camera.m_Direction) < 0.0f)
 				{
+                    auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[i + 1], transform);
+                    auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[0], transform);
+                    auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[i + 2], transform);
 					if (IsInsideTriangle2D(
 						click_coord,
-						TransformToSCSVec2GLM(sphere.m_Vertices[i + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[0], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[i + 2], transform)
-					))
+						_v1,
+                        _v2,
+                        _v3))
 					{
 						const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[0], transform) - TransformToWCSVec4(sphere.m_Vertices[i + 1], transform);
 						const glm::vec3 v_b = TransformToWCSVec4(sphere.m_Vertices[i + 2], transform) - TransformToWCSVec4(sphere.m_Vertices[0], transform);
@@ -435,10 +437,14 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 			const glm::vec3 v2 = TransformToVCSVec4(sphere.m_Vertices[1], transform) - TransformToVCSVec4(sphere.m_Vertices[0], transform);
 			if (glm::dot(glm::cross(v1, v2), m_Camera.m_Direction) < 0.0f)
 			{
+
+                auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude], transform);
+                auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[0], transform);
+                auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[1], transform);
 				if (IsInsideTriangle2D(click_coord,
-					TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude], transform),
-					TransformToSCSVec2GLM(sphere.m_Vertices[0], transform),
-					TransformToSCSVec2GLM(sphere.m_Vertices[1], transform)
+                    _v1,
+                    _v2,
+                    _v3
 				))
 				{
 					const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[0], transform) - TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude], transform);
@@ -457,10 +463,14 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 					const glm::vec3 v2 = TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform) - TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform);
 					if (glm::dot(glm::cross(v1, v2), m_Camera.m_Direction) < 0.0f)
 					{
+
+                        auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
+                        auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform);
+                        auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform);
 						if (IsInsideTriangle2D(click_coord,
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform),
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform),
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform)
+                            _v1,
+                            _v2,
+                            _v3
 						))
 						{
 							const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform) - TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
@@ -474,10 +484,14 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 					const glm::vec3 v4 = TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform) - TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform);
 					if (glm::dot(glm::cross(v3, v4), m_Camera.m_Direction) < 0.0f)
 					{
+
+                        auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 2], transform);
+                        auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform);
+                        auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
 						if (IsInsideTriangle2D(click_coord,
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 2], transform),
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform),
-							TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform)
+                            _v1,
+                            _v2,
+                            _v3
 						))
 						{
 							const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 2], transform) - TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 2], transform);
@@ -493,10 +507,13 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 				const glm::vec3 v2 = TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform) - TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform);
 				if (glm::dot(glm::cross(v1, v2), m_Camera.m_Direction) < 0.0f)
 				{
+                    auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
+                    auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform);
+                    auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform);
 					if (IsInsideTriangle2D(click_coord,
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + j + 1], transform)
+                        _v1,
+                        _v2,
+                        _v3
 					))
 					{
 						const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform) - TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
@@ -510,10 +527,13 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 				const glm::vec3 v4 = TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform) - TransformToVCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform);
 				if (glm::dot(glm::cross(v3, v4), m_Camera.m_Direction) < 0.0f)
 				{
+                    auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + 1], transform);
+                    auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform);
+                    auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform);
 					if (IsInsideTriangle2D(click_coord,
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + j + 1], transform)
+                        _v1,
+                        _v2,
+                        _v3
 					))
 					{
 						const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * i + 1], transform) - TransformToWCSVec4(sphere.m_Vertices[sphere.m_NLongitude * (i - 1) + 1], transform);
@@ -532,10 +552,13 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 				const glm::vec3 v2 = TransformToVCSVec4(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i], transform) - TransformToVCSVec4(sphere.m_Vertices[topMostVertex], transform);
 				if (glm::dot(glm::cross(v1, v2), m_Camera.m_Direction) < 0.0f)
 				{
+                    auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i + 1], transform);
+                    auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex], transform);
+                    auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i], transform);
 					if (IsInsideTriangle2D(click_coord,
-						TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i + 1], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex], transform),
-						TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i], transform)
+                        _v1,
+                        _v2,
+                        _v3
 					))
 					{
 						const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[topMostVertex], transform) - TransformToWCSVec4(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude + i + 1], transform);
@@ -550,10 +573,13 @@ std::optional<glm::vec3> RenderSystem::GetSphereSurfaceNormal(entt::registry& re
 			const glm::vec3 v4 = TransformToVCSVec4(sphere.m_Vertices[topMostVertex - 1], transform) - TransformToVCSVec4(sphere.m_Vertices[topMostVertex], transform);
 			if (glm::dot(glm::cross(v3, v4), m_Camera.m_Direction) < 0.0f)
 			{
+                auto _v1 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude], transform);
+                auto _v2 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex], transform);
+                auto _v3 = TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - 1], transform);
 				if (IsInsideTriangle2D(click_coord,
-					TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude], transform),
-					TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex], transform),
-					TransformToSCSVec2GLM(sphere.m_Vertices[topMostVertex - 1], transform)
+                    _v1,
+                    _v2,
+                    _v3
 				))
 				{
 					const glm::vec3 v_a = TransformToWCSVec4(sphere.m_Vertices[topMostVertex], transform) - TransformToWCSVec4(sphere.m_Vertices[topMostVertex - sphere.m_NLongitude], transform);
