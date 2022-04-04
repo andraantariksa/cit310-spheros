@@ -13,10 +13,10 @@ Project specification: https://drive.google.com/file/d/1oc3v2uTZPibaaAwLHdLKjV-X
 
 ## Screenshot
 
-![Sphere properties and 3D viewer](assets/1.png)
-![Translation](assets/2.png)
-![Rotation](assets/3.png)
-![Misc for sphere surface normal](assets/4.png)
+![Sphere properties and 3D viewer](Assets/1.png)
+![Translation](Assets/2.png)
+![Rotation](Assets/3.png)
+![Misc for sphere surface normal](Assets/4.png)
 
 ## License
 
